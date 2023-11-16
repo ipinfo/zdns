@@ -456,6 +456,8 @@ func (s *Lookup) retryingLookup(q Question, nameServer string, recursive bool) (
 		if s.Factory.TCPClient != nil {
 			s.Factory.TCPClient.Timeout = 2 * s.Factory.TCPClient.Timeout
 		}
+		// Retry with a random name server.
+		nameServer = s.Factory.Factory.RandomNameServer()
 	}
 	panic("loop must return")
 }
